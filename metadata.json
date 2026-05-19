@@ -1,0 +1,6 @@
+{
+  "name": "Realaiva AI Tools Suite",
+  "description": "A comprehensive suite of AI tools for SEO, marketing, and content creation, including blog title generators, meta description generators, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
