@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 
+export const SITE_URL = 'https://tools.realaiva.com';
+
 export function getToolSEO(name: string, output: string, audience: string, slug: string): Metadata {
   const seoTitle = `Free ${name} – Generate ${output} Fast`;
   const metaDescription = `Use this free ${name} to create ${output} for ${audience}. Generate better ideas, improve SEO, and copy results instantly.`;
-  const url = `https://realaiva.com/tools/${slug}/`;
+  const url = `${SITE_URL}/${slug}/`;
 
   return {
     title: seoTitle,
@@ -19,7 +21,7 @@ export function getToolSEO(name: string, output: string, audience: string, slug:
 }
 
 export function generateToolSchema(name: string, slug: string, faqs: { question: string; answer: string }[]) {
-  const url = `https://realaiva.com/tools/${slug}/`;
+  const url = `${SITE_URL}/${slug}/`;
 
   const webAppSchema = {
     "@context": "https://schema.org",
@@ -74,17 +76,11 @@ export function generateToolSchema(name: string, slug: string, faqs: { question:
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://realaiva.com"
+        "item": SITE_URL
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Tools",
-        "item": "https://realaiva.com/tools"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
         "name": name,
         "item": url
       }

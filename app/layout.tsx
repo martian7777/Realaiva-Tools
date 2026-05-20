@@ -1,9 +1,17 @@
 import type {Metadata} from 'next';
-import './globals.css'; // Global styles
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'My Google AI Studio App',
-  description: 'My Google AI Studio App',
+  metadataBase: new URL('https://tools.realaiva.com'),
+  title: {
+    default: 'Realaiva AI Tools Suite – Free SEO, Writing & Marketing Tools',
+    template: '%s | Realaiva Tools',
+  },
+  description:
+    'A comprehensive suite of free AI tools by Realaiva for SEO, content creation, YouTube, social media, email and product marketing.',
+  alternates: {
+    canonical: 'https://tools.realaiva.com',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

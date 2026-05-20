@@ -1,72 +1,135 @@
-import Link from "next/link";
-import { ArrowRight, FileText, Search, Mail, Youtube, Wrench, Terminal, BarChart, LayoutList, Pin, ShoppingBag } from "lucide-react";
 import type { Metadata } from 'next';
+import {
+  FileText,
+  Search,
+  Mail,
+  Youtube,
+  Wrench,
+  Terminal,
+  BarChart,
+  LayoutList,
+  Pin,
+  ShoppingBag,
+  type LucideIcon,
+} from "lucide-react";
+import ToolCard from "@/components/ToolCard";
 
 export const metadata: Metadata = {
   title: "Free AI Tools Suite by Realaiva - SEO & Marketing Tools",
-  description: "A comprehensive suite of free AI tools designed to turbocharge your SEO, content creation, and marketing strategies.",
+  description:
+    "A comprehensive suite of free AI tools designed to turbocharge your SEO, content creation, and marketing strategies.",
+  alternates: { canonical: 'https://tools.realaiva.com' },
 };
 
-const tools = [
+interface Tool {
+  name: string;
+  description: string;
+  slug: string;
+  icon: LucideIcon;
+}
+
+interface Category {
+  name: string;
+  description: string;
+  tools: Tool[];
+}
+
+const categories: Category[] = [
   {
-    name: "AI Blog Title Generator",
-    description: "Create SEO-friendly blog titles for articles, guides, reviews, and list posts.",
-    slug: "ai-blog-title-generator",
-    icon: FileText,
+    name: "AI Writing Tools",
+    description: "Generate titles, outlines and descriptions that convert.",
+    tools: [
+      {
+        name: "AI Blog Title Generator",
+        description: "Create SEO-friendly blog titles for articles, guides, reviews, and list posts.",
+        slug: "ai-blog-title-generator",
+        icon: FileText,
+      },
+      {
+        name: "Blog Outline Generator",
+        description: "Structure your articles with comprehensive, SEO-optimized outlines.",
+        slug: "blog-outline-generator",
+        icon: LayoutList,
+      },
+      {
+        name: "AI Product Description Generator",
+        description: "Write persuasive product descriptions for Etsy, Amazon, and Shopify.",
+        slug: "ai-product-description-generator",
+        icon: ShoppingBag,
+      },
+    ],
   },
   {
-    name: "Meta Description Generator",
-    description: "Generate compelling meta descriptions to improve your CTR and SEO.",
-    slug: "meta-description-generator",
-    icon: Search,
+    name: "SEO Tools",
+    description: "Optimize on-page SEO with keyword and meta-data helpers.",
+    tools: [
+      {
+        name: "Meta Description Generator",
+        description: "Generate compelling meta descriptions to improve your CTR and SEO.",
+        slug: "meta-description-generator",
+        icon: Search,
+      },
+      {
+        name: "Keyword Density Checker",
+        description: "Analyze your text to optimize keyword usage and avoid keyword stuffing.",
+        slug: "keyword-density-checker",
+        icon: BarChart,
+      },
+    ],
   },
   {
-    name: "AI Email Subject Line Generator",
-    description: "Write email subject lines that boost open rates for your campaigns.",
-    slug: "ai-email-subject-line-generator",
-    icon: Mail,
+    name: "YouTube Tools",
+    description: "Craft click-worthy video titles and thumbnail text.",
+    tools: [
+      {
+        name: "YouTube Title Generator",
+        description: "Create click-worthy YouTube video titles optimized for search.",
+        slug: "youtube-title-generator",
+        icon: Youtube,
+      },
+    ],
   },
   {
-    name: "YouTube Title Generator",
-    description: "Create click-worthy YouTube video titles optimized for search.",
-    slug: "youtube-title-generator",
-    icon: Youtube,
+    name: "Social Media Tools",
+    description: "Win the scroll on Pinterest and beyond.",
+    tools: [
+      {
+        name: "Pinterest Pin Title Generator",
+        description: "Create viral pin titles and descriptions for Pinterest.",
+        slug: "pinterest-pin-title-generator",
+        icon: Pin,
+      },
+    ],
   },
   {
-    name: "AI Tool Finder",
-    description: "Find the perfect AI tool for any specific use case or budget.",
-    slug: "ai-tool-finder",
-    icon: Wrench,
+    name: "Email Tools",
+    description: "Boost open rates with high-performing subject lines.",
+    tools: [
+      {
+        name: "AI Email Subject Line Generator",
+        description: "Write email subject lines that boost open rates for your campaigns.",
+        slug: "ai-email-subject-line-generator",
+        icon: Mail,
+      },
+    ],
   },
   {
-    name: "AI Prompt Generator",
-    description: "Generate expert-level prompts for ChatGPT, Claude, and Gemini.",
-    slug: "ai-prompt-generator",
-    icon: Terminal,
-  },
-  {
-    name: "Keyword Density Checker",
-    description: "Analyze your text to optimize keyword usage and avoid keyword stuffing.",
-    slug: "keyword-density-checker",
-    icon: BarChart,
-  },
-  {
-    name: "Blog Outline Generator",
-    description: "Structure your articles with comprehensive, SEO-optimized outlines.",
-    slug: "blog-outline-generator",
-    icon: LayoutList,
-  },
-  {
-    name: "Pinterest Pin Title Generator",
-    description: "Create viral pin titles and descriptions for Pinterest.",
-    slug: "pinterest-pin-title-generator",
-    icon: Pin,
-  },
-  {
-    name: "AI Product Description Generator",
-    description: "Write persuasive product descriptions for Etsy, Amazon, and Shopify.",
-    slug: "ai-product-description-generator",
-    icon: ShoppingBag,
+    name: "Prompt & Discovery Tools",
+    description: "Engineer better prompts and find the right AI tool for any job.",
+    tools: [
+      {
+        name: "AI Prompt Generator",
+        description: "Generate expert-level prompts for ChatGPT, Claude, and Gemini.",
+        slug: "ai-prompt-generator",
+        icon: Terminal,
+      },
+      {
+        name: "AI Tool Finder",
+        description: "Find the perfect AI tool for any specific use case or budget.",
+        slug: "ai-tool-finder",
+        icon: Wrench,
+      },
+    ],
   },
 ];
 
@@ -83,34 +146,29 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tools.map((tool) => {
-            const Icon = tool.icon;
-            return (
-              <Link 
-                key={tool.slug} 
-                href={`/tools/${tool.slug}`}
-                className="group p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition-all duration-200 border border-[#D9D1C7] flex flex-col h-full"
-              >
-                <div className="w-12 h-12 bg-[#F1F0EA] text-[#5A5A40] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h2 className="text-xl font-bold text-[#2C2C24] mb-2 group-hover:text-[#5A5A40] transition-colors">
-                  {tool.name}
+        <div className="space-y-16">
+          {categories.map((category) => (
+            <section key={category.name} aria-labelledby={`cat-${category.name}`}>
+              <div className="mb-6">
+                <h2
+                  id={`cat-${category.name}`}
+                  className="text-2xl md:text-3xl font-serif text-[#2C2C24]"
+                >
+                  {category.name}
                 </h2>
-                <p className="text-[#7A756C] mb-6 flex-grow">
-                  {tool.description}
-                </p>
-                <div className="flex items-center text-[#5A5A40] font-medium tracking-wide uppercase text-sm">
-                  Try Tool <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            )
-          })}
+                <p className="text-[#7A756C] mt-1">{category.description}</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {category.tools.map((tool) => (
+                  <ToolCard key={tool.slug} {...tool} />
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </main>
       <footer className="mt-auto py-8 text-center text-[#8A857C]">
-         <p>© {new Date().getFullYear()} Realaiva. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Realaiva. All rights reserved.</p>
       </footer>
     </div>
   );

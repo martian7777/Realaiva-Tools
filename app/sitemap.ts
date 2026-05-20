@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next';
 
+const SITE_URL = 'https://tools.realaiva.com';
+
 const tools = [
   "ai-blog-title-generator",
   "meta-description-generator",
@@ -15,7 +17,7 @@ const tools = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = tools.map((slug) => ({
-    url: `https://realaiva.com/tools/${slug}/`,
+    url: `${SITE_URL}/${slug}/`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
@@ -23,16 +25,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: 'https://realaiva.com/',
+      url: `${SITE_URL}/`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
-    },
-    {
-      url: 'https://realaiva.com/tools/',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
     },
     ...routes,
   ];
