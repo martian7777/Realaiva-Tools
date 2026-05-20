@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(Get-ChildItem -Path \"d:\\\\realaivatools\\\\Realaiva-Tools\\\\app\\\\tools\\\\\" -Directory | Select-Object -ExpandProperty Name)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(curl -sS -o /dev/null -w \"%{http_code}\\\\n\" --max-time 2 http://localhost:3000/)"
     ]
   }
 }
