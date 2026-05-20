@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(Get-ChildItem -Path \"d:\\\\realaivatools\\\\Realaiva-Tools\\\\app\\\\tools\\\\\" -Directory | Select-Object -ExpandProperty Name)"
+      "Bash(Get-ChildItem -Path \"d:\\\\realaivatools\\\\Realaiva-Tools\\\\app\\\\tools\\\\\" -Directory | Select-Object -ExpandProperty Name)",
+      "Bash(npm run *)"
     ]
   }
 }

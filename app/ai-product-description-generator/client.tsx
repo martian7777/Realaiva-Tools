@@ -13,7 +13,8 @@ export default function ProductDescriptionClient() {
   const [audience, setAudience] = useState("");
   const [benefits, setBenefits] = useState("");
   const [tone, setTone] = useState("persuasive");
-  
+  const [length, setLength] = useState("medium");
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -34,12 +35,13 @@ Target Platform: ${platform}
 Target Audience: ${audience}
 Key Benefits/Features: ${benefits}
 Tone of Voice: ${tone}
+Description Length: ${length} (short = ~80 words, medium = ~200 words, long = ~400 words)
 
 Requirements:
 Because you are writing for the ${platform} platform, structure the listing accordingly to maximize sales. Include:
 1. **SEO Optimized Title**
 2. **Short Catchy Headline / Subtitle**
-3. **Long Description:** Tell a story, describe the pain point, and explain how this product solves it.
+3. **Long Description:** Match the requested length. Tell a story, describe the pain point, and explain how this product solves it.
 4. **Key Features & Benefits (Bullet Points):** Focus on the transformation the product provides.
 5. **Who is this for?**
 6. **3 FAQs**
@@ -124,19 +126,34 @@ Format beautifully using Markdown.`;
             </select>
           </div>
         </div>
-        <div>
-          <label htmlFor="tone" className="block text-xs font-bold uppercase tracking-wider text-[#8A857C] mb-2">Tone</label>
-          <select
-            id="tone"
-            className="w-full px-4 py-3 rounded-xl border border-[#D9D1C7] bg-[#FBFBFA] focus:outline-none focus:ring-2 focus:ring-[#5A5A40]/20 text-[#2C2C24]"
-            value={tone}
-            onChange={(e) => setTone(e.target.value)}
-          >
-            <option value="persuasive">Persuasive / Sales</option>
-            <option value="premium">Premium / Luxury</option>
-            <option value="simple">Simple & Direct</option>
-            <option value="exciting">Exciting / Energetic</option>
-          </select>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="tone" className="block text-xs font-bold uppercase tracking-wider text-[#8A857C] mb-2">Tone</label>
+            <select
+              id="tone"
+              className="w-full px-4 py-3 rounded-xl border border-[#D9D1C7] bg-[#FBFBFA] focus:outline-none focus:ring-2 focus:ring-[#5A5A40]/20 text-[#2C2C24]"
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+            >
+              <option value="persuasive">Persuasive / Sales</option>
+              <option value="premium">Premium / Luxury</option>
+              <option value="simple">Simple &amp; Direct</option>
+              <option value="exciting">Exciting / Energetic</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="length" className="block text-xs font-bold uppercase tracking-wider text-[#8A857C] mb-2">Description Length</label>
+            <select
+              id="length"
+              className="w-full px-4 py-3 rounded-xl border border-[#D9D1C7] bg-[#FBFBFA] focus:outline-none focus:ring-2 focus:ring-[#5A5A40]/20 text-[#2C2C24]"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+            >
+              <option value="short">Short (~80 words)</option>
+              <option value="medium">Medium (~200 words)</option>
+              <option value="long">Long (~400 words)</option>
+            </select>
+          </div>
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
