@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://tools.realaiva.com',
   },
+  verification: {
+    google: 'r2F6SX0sERQbpLz7Gzg2aIpQh1tz-D4_4AYEP5ND3EA',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
