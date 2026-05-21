@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { articles } from '@/lib/articles';
 
 const SITE_URL = 'https://tools.realaiva.com';
 
@@ -16,9 +17,18 @@ const tools = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = tools.map((slug) => ({
+  // Generate routes for tools
+  const toolRoutes = tools.map((slug) => ({
     url: `${SITE_URL}/${slug}/`,
     lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  // Generate routes for blog articles
+  const blogArticleRoutes = articles.map((article) => ({
+    url: `${SITE_URL}/blog/${article.slug}/`,
+    lastModified: new Date(article.updatedAt),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
@@ -28,8 +38,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/`,
       lastModified: new Date(),
       changeFrequency: 'daily',
-      priority: 1,
+      priority: 1.0,
     },
-    ...routes,
+    {
+      url: `${SITE_URL}/blog/`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    ...toolRoutes,
+    ...blogArticleRoutes,
   ];
 }
+
