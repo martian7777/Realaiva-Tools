@@ -6,74 +6,215 @@ const TOOL_NAME = "Meta Description Generator";
 const OUTPUT_TYPE = "SEO Meta Descriptions";
 const AUDIENCE = "blog posts, product pages, tools, and services";
 const SLUG = "meta-description-generator";
+const FOCUS_KEYWORD = "meta description generator";
 
-export const metadata = getToolSEO(TOOL_NAME, OUTPUT_TYPE, AUDIENCE, SLUG);
+const HERO = {
+  src: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=1600&q=80&auto=format&fit=crop",
+  alt: "Meta description generator creating SEO-friendly search snippets on a dashboard",
+};
+
+export const metadata = getToolSEO(TOOL_NAME, OUTPUT_TYPE, AUDIENCE, SLUG, {
+  focusKeyword: FOCUS_KEYWORD,
+  seoTitle: "Free Meta Description Generator for SEO and Higher CTR in 2026",
+  metaDescription:
+    "Use our free meta description generator to create clear, SEO-friendly meta descriptions for blog posts, product pages, landing pages, and websites in seconds.",
+});
 
 const faqs = [
   {
-    question: "What is a meta description?",
-    answer: "A meta description is an HTML attribute that provides a brief summary of a web page. Search engines like Google often display this summary in search results below the page title."
+    question: "What is a meta description generator?",
+    answer:
+      "A meta description generator is an AI tool that writes the 150–160 character snippet that appears under your page title in Google search results, optimized for clicks and SEO.",
   },
   {
-    question: "Is this tool free?",
-    answer: "Yes, the Realaiva Meta Description Generator is 100% free to use."
+    question: "Is this meta description generator free?",
+    answer: "Yes. The Realaiva meta description generator is 100% free with no signup.",
   },
   {
-    question: "How does this tool work?",
-    answer: "Enter your page topic, target keyword, and choose your preferred page type and tone. The AI then writes compelling descriptions optimized to fit within the ideal character limits and maximize click-through rates."
+    question: "How does the meta description generator work?",
+    answer:
+      "Enter your page topic, target keyword, page type, and tone. The AI writes multiple meta description options that fit inside Google's character limit and include a clear call to action.",
   },
   {
-    question: "Can I use it for SEO?",
-    answer: "Yes, using optimized meta descriptions helps explain to both users and search engines what your page is about, which can improve your organic click-through rate (CTR) and indirectly benefit your SEO."
+    question: "Does the meta description affect SEO?",
+    answer:
+      "Indirectly. The meta description is not a direct ranking factor, but a well-written one raises click-through rate, which can improve rankings over time.",
   },
   {
-    question: "Does it store my data?",
-    answer: "No, your data is processed securely to generate the results and is not permanently stored."
+    question: "Does this tool store my data?",
+    answer:
+      "No. The meta description generator processes your inputs in real time and does not save them.",
   },
   {
-    question: "What makes a good meta description?",
-    answer: "A good meta description clearly states the value or answer the page provides, includes the main keyword naturally, uses an active voice, and ends with a clear call-to-action—all within 150 to 160 characters."
+    question: "What is the ideal meta description length?",
+    answer:
+      "Between 150 and 160 characters including spaces. Anything longer is truncated by Google with an ellipsis, hiding your call to action.",
   },
   {
-    question: "Can I use this for business?",
-    answer: "Absolutely. E-commerce sites, service businesses, and content publishers use concise meta descriptions to entice users to click their links over competitors in the SERPs."
-  }
+    question: "Can I use the meta description generator for ecommerce?",
+    answer:
+      "Yes. The meta description generator works for blog posts, landing pages, product pages, category pages, and any URL that needs a search snippet.",
+  },
 ];
 
 const contentSections = [
   {
-    title: "What is a meta description?",
-    content: <p>A meta description is a short snippet of HTML code that summarizes a webpage's content. While it is not a direct ranking factor for Google, a well-written meta description acts as an organic advertisement, giving searchers a compelling reason to click on your link instead of someone else's.</p>
-  },
-  {
-    title: "Ideal meta description length",
-    content: <p>The optimal length for a meta description is generally between <strong>150 and 160 characters</strong> (including spaces). If your description is longer, Google will likely truncate it with an ellipsis (...), which can lose the impact of your message and your call-to-action.</p>
-  },
-  {
-    title: "How to write a good meta description",
+    title: "What Is a Meta Description Generator?",
     content: (
-      <ul>
-        <li><strong>Be Specific:</strong> Clearly explain what the user will find on the page.</li>
-        <li><strong>Include the Focus Keyword:</strong> While it may not boost rankings directly, Google bolds the search terms in the description, drawing the eye.</li>
-        <li><strong>Write a strong Call-to-Action (CTA):</strong> Use phrases like "Read more," "Learn how," "Buy now," or "Get started today."</li>
-        <li><strong>Ensure uniqueness:</strong> Every page on your website should have a unique meta description.</li>
-      </ul>
-    )
+      <>
+        <p>
+          A meta description generator is a free AI tool that writes the short snippet of text
+          shown under your page title in Google search results. The Realaiva meta description
+          generator turns a topic + focus keyword into multiple 150–160 character options,
+          optimized for click-through rate without sounding spammy.
+        </p>
+        <p>
+          It saves writers, marketers, and store owners the hassle of manually counting characters
+          and rewriting until something fits.
+        </p>
+      </>
+    ),
   },
   {
-    title: "Examples of good meta descriptions",
+    title: "How to Use This Meta Description Generator",
     content: (
-      <ul>
-        <li><strong>E-commerce:</strong> "Looking for the best running shoes for flat feet? Browse our top 10 picks with arch support. Free shipping on orders over $50. Shop the collection today!" (158 chars)</li>
-        <li><strong>Blog Post:</strong> "Learn how to write SEO-friendly blog posts step-by-step. Discover proven formatting, keyword research, and optimization strategies to rank higher. Start reading!" (160 chars)</li>
-      </ul>
-    )
-  }
+      <>
+        <ol className="list-decimal pl-6 space-y-2">
+          <li>Type the topic of your page (be specific).</li>
+          <li>Add the focus keyword.</li>
+          <li>Select page type: blog post, product, landing page, or category.</li>
+          <li>Pick a tone (friendly, expert, persuasive).</li>
+          <li>Generate and copy the option you like best.</li>
+        </ol>
+        <p>
+          I personally prefer meta descriptions that sound natural instead of stuffed with keywords.
+          A strong meta description should feel like a short promise: tell the reader what they
+          will get, why it matters, and why they should click now.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Why Meta Descriptions Matter for SEO",
+    content: (
+      <>
+        <p>
+          Google does not use the meta description as a direct ranking signal, but it heavily
+          influences what users click on. Higher CTR sends positive engagement signals back to
+          Google, which can lift rankings over time.
+        </p>
+        <p>
+          A meta description also reinforces relevance: when the searched phrase appears in the
+          snippet, Google bolds it, drawing the eye and making your result feel more relevant than
+          the others on the page.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "How Long Should a Meta Description Be?",
+    content: (
+      <>
+        <p>
+          The ideal length is between <strong>150 and 160 characters</strong>, including spaces.
+          Anything longer is cut off with an ellipsis (…) on most devices, hiding your call to
+          action. Anything shorter usually wastes free CTR real estate.
+        </p>
+        <p>
+          The meta description generator automatically keeps every output inside the safe limit,
+          but you should still review the final version on mobile, where Google sometimes truncates
+          earlier.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Good vs Bad Meta Description Examples",
+    content: (
+      <>
+        <p>
+          <strong>Bad:</strong> Best tools AI SEO marketing blog content keywords.
+          <br />
+          <strong>Better:</strong> Discover the best AI SEO tools to improve keyword research,
+          content optimization, rankings, and technical SEO faster.
+        </p>
+        <p>
+          <strong>Bad:</strong> Read our blog post about meta descriptions.
+          <br />
+          <strong>Better:</strong> Learn how to write meta descriptions that boost CTR. Free
+          examples, templates, and a step-by-step formula for SEO.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Meta Description Writing Tips",
+    content: (
+      <>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Include the focus keyword once, naturally.</li>
+          <li>Lead with a benefit or specific outcome.</li>
+          <li>End with a clear CTA (&quot;Learn how&quot;, &quot;Get started&quot;, &quot;Shop today&quot;).</li>
+          <li>Write a unique description for every page on your site.</li>
+          <li>Keep it human — read it out loud before saving.</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "Common Mistakes to Avoid",
+    content: (
+      <>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Letting WordPress auto-generate a meta description from the first paragraph.</li>
+          <li>Stuffing the focus keyword three times.</li>
+          <li>Writing &quot;Best [keyword] 2026 [keyword] cheap [keyword]&quot; — Google may rewrite it.</li>
+          <li>Copy-pasting the same description across multiple pages.</li>
+          <li>Forgetting the call to action.</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "Related SEO Tools",
+    content: (
+      <>
+        <p>
+          Use the meta description generator alongside these other free Realaiva SEO tools:
+        </p>
+        <ul className="list-disc pl-6 space-y-1">
+          <li><a className="underline" href="/ai-blog-title-generator">AI Blog Title Generator</a> — write the title before the meta.</li>
+          <li><a className="underline" href="/keyword-density-checker">Keyword Density Checker</a> — confirm your focus keyword sits near 1%.</li>
+          <li><a className="underline" href="/blog-outline-generator">Blog Outline Generator</a> — get the structure right first.</li>
+          <li><a className="underline" href="/ai-product-description-generator">AI Product Description Generator</a> — for ecommerce listings.</li>
+        </ul>
+        <p>
+          Full guide:{" "}
+          <a className="underline" href="/blog/best-ai-seo-tools-2026">
+            Best AI SEO Tools in 2026
+          </a>.
+        </p>
+      </>
+    ),
+  },
 ];
 
 const relatedTools = [
   { name: "AI Blog Title Generator", slug: "ai-blog-title-generator" },
-  { name: "Blog Outline Generator", slug: "blog-outline-generator" }
+  { name: "Keyword Density Checker", slug: "keyword-density-checker" },
+  { name: "Blog Outline Generator", slug: "blog-outline-generator" },
+  { name: "AI Product Description Generator", slug: "ai-product-description-generator" },
+];
+
+const externalRefs = [
+  {
+    label: "Google Search Central: Meta tags Google understands",
+    href: "https://developers.google.com/search/docs/crawling-indexing/special-tags",
+  },
+  {
+    label: "Rank Math: General Tab On-Page SEO",
+    href: "https://rankmath.com/kb/general-tab/",
+  },
 ];
 
 export default function MetaDescriptionGeneratorPage() {
@@ -87,10 +228,12 @@ export default function MetaDescriptionGeneratorPage() {
       />
       <ToolLayout
         title={`Free ${TOOL_NAME}`}
-        intro={`The ${TOOL_NAME} by Realaiva helps bloggers, marketers, students, and business owners create SEO-friendly ${OUTPUT_TYPE.toLowerCase()} in seconds.`}
+        intro={`The free ${FOCUS_KEYWORD} by Realaiva helps writers, marketers, and store owners create SEO-friendly ${OUTPUT_TYPE.toLowerCase()} that boost CTR — in seconds, with no signup.`}
         contentSections={contentSections}
         faqs={faqs}
         relatedTools={relatedTools}
+        hero={HERO}
+        externalRefs={externalRefs}
       >
         <MetaDescriptionGeneratorClient />
       </ToolLayout>

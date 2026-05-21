@@ -5,7 +5,18 @@ interface RelatedTool {
   slug: string;
 }
 
-export default function RelatedTools({ tools }: { tools: RelatedTool[] }) {
+interface RelatedArticle {
+  title: string;
+  slug: string;
+}
+
+export default function RelatedTools({
+  tools,
+  articles,
+}: {
+  tools: RelatedTool[];
+  articles?: RelatedArticle[];
+}) {
   return (
     <div className="bg-[#E2DCD3] rounded-3xl p-8 border border-[#D9D1C7]">
       <h2 className="text-xl font-bold text-[#2C2C24] mb-4">Explore More Resources</h2>
@@ -20,34 +31,35 @@ export default function RelatedTools({ tools }: { tools: RelatedTool[] }) {
             </Link>
           </li>
         ))}
+        {articles?.map((a) => (
+          <li key={a.slug}>
+            <Link
+              href={`/blog/${a.slug}`}
+              className="text-[#5A5A40] hover:underline font-medium"
+            >
+              📖 {a.title}
+            </Link>
+          </li>
+        ))}
         <li>
-          <Link
-            href="https://realaiva.com/best-ai-seo-tools"
-            className="text-[#5A5A40] hover:underline font-medium"
-          >
-            Best AI SEO Tools
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="https://realaiva.com/best-ai-tools-for-writing-blog-posts"
-            className="text-[#5A5A40] hover:underline font-medium"
-          >
-            Best AI Tools for Writing Blog Posts
+          <Link href="/blog" className="text-[#5A5A40] hover:underline font-medium">
+            Realaiva Blog
           </Link>
         </li>
         <li>
           <Link href="/" className="text-[#5A5A40] hover:underline font-medium">
-            Main Tools Hub
+            All Free AI Tools
           </Link>
         </li>
         <li>
-          <Link
+          <a
             href="https://realaiva.com"
+            target="_blank"
+            rel="noopener"
             className="text-[#5A5A40] hover:underline font-medium"
           >
-            Realaiva Homepage
-          </Link>
+            Realaiva Homepage ↗
+          </a>
         </li>
       </ul>
     </div>

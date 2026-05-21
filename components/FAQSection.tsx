@@ -5,7 +5,7 @@ interface FAQ {
 
 export default function FAQSection({ faqs }: { faqs: FAQ[] }) {
   return (
-    <div className="mb-16">
+    <div id="faqs" className="mb-16 scroll-mt-24">
       <h2 className="text-2xl font-serif text-[#2C2C24] mb-6">Frequently Asked Questions</h2>
       <div className="space-y-4">
         {faqs.map((faq, idx) => (

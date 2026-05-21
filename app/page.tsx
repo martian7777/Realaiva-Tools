@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from "next/link";
+import Image from "next/image";
 import {
   FileText,
   Search,
@@ -13,12 +15,22 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import ToolCard from "@/components/ToolCard";
+import { getRecentArticles } from "@/lib/articles";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Free AI Tools Suite by Realaiva - SEO & Marketing Tools",
+  title: "Free AI Tools for Content, SEO, YouTube, Pinterest and Business",
   description:
-    "A comprehensive suite of free AI tools designed to turbocharge your SEO, content creation, and marketing strategies.",
-  alternates: { canonical: 'https://tools.realaiva.com' },
+    "Explore free AI tools by Realaiva for blog titles, meta descriptions, email subject lines, YouTube titles, prompts, product descriptions, keyword density, and more.",
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: "Free AI Tools for Content, SEO, YouTube, Pinterest and Business",
+    description:
+      "Explore free AI tools by Realaiva for blog titles, meta descriptions, email subject lines, YouTube titles, prompts, product descriptions, keyword density, and more.",
+    url: SITE_URL,
+    siteName: "Realaiva Tools",
+    type: "website",
+  },
 };
 
 interface Tool {
@@ -134,15 +146,35 @@ const categories: Category[] = [
 ];
 
 export default function Home() {
+  const recentArticles = getRecentArticles(3);
+
   return (
     <div className="min-h-screen bg-[#F8F5F2] flex flex-col items-center">
+      <header className="w-full h-16 flex items-center px-8 bg-white border-b border-[#D9D1C7]">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
+          <Link href="/" className="text-xl font-bold tracking-tight text-[#2C2C24]">
+            Realaiva <span className="text-[#5A5A40]">Tools</span>
+          </Link>
+          <nav className="flex items-center gap-5">
+            <Link href="/" className="text-sm font-medium text-[#5A5A40] hover:text-[#2C2C24]">
+              All Tools
+            </Link>
+            <Link href="/blog" className="text-sm font-medium text-[#8A857C] hover:text-[#5A5A40]">
+              Blog
+            </Link>
+          </nav>
+        </div>
+      </header>
+
       <main className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif text-[#2C2C24] tracking-tight mb-4">
-            Realaiva AI Tools Suite
+            Free AI Tools for Content Creators, Bloggers, Marketers and Businesses
           </h1>
-          <p className="text-lg md:text-xl text-[#7A756C] max-w-2xl mx-auto">
-            Supercharge your marketing and content creation with our collection of free, high-quality AI tools.
+          <p className="text-lg md:text-xl text-[#7A756C] max-w-3xl mx-auto leading-relaxed">
+            A curated suite of free AI tools by Realaiva — for blog titles, meta descriptions,
+            email subject lines, YouTube titles, product descriptions, prompts, Pinterest pins,
+            and keyword density checks. No signup. No paywalls.
           </p>
         </div>
 
@@ -166,10 +198,55 @@ export default function Home() {
             </section>
           ))}
         </div>
+
+        <section className="mt-20" aria-labelledby="from-the-blog">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <h2
+                id="from-the-blog"
+                className="text-2xl md:text-3xl font-serif text-[#2C2C24]"
+              >
+                From the Realaiva Blog
+              </h2>
+              <p className="text-[#7A756C] mt-1">
+                Honest guides on AI tools, SEO, and content marketing.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-[#5A5A40] hover:text-[#2C2C24] hidden sm:inline"
+            >
+              View all posts →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recentArticles.map((a) => (
+              <Link
+                key={a.slug}
+                href={`/blog/${a.slug}`}
+                className="bg-white rounded-3xl border border-[#D9D1C7] shadow-sm hover:shadow-md transition overflow-hidden flex flex-col"
+              >
+                <div className="relative aspect-[16/9] bg-[#E2DCD3]">
+                  <Image
+                    src={a.hero.src}
+                    alt={a.hero.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-lg font-serif text-[#2C2C24] mb-2 leading-snug">
+                    {a.title}
+                  </h3>
+                  <p className="text-sm text-[#7A756C] leading-relaxed flex-1">{a.excerpt}</p>
+                  <div className="text-xs text-[#8A857C] mt-3">{a.readMinutes} min read</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="mt-auto py-8 text-center text-[#8A857C]">
-        <p>© {new Date().getFullYear()} Realaiva. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
