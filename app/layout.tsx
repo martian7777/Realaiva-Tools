@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'r2F6SX0sERQbpLz7Gzg2aIpQh1tz-D4_4AYEP5ND3EA',
   },
+  appleWebApp: {
+    title: 'Ai Tools',
+  },
   openGraph: {
     title: 'Realaiva AI Tools Suite – Free SEO, Writing & Marketing Tools',
     description:
@@ -29,6 +32,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Ai Tools" />
+      </head>
       <body
         className="bg-[#F8F5F2] text-[#3A3A32] flex flex-col min-h-screen"
         suppressHydrationWarning
